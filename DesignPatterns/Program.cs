@@ -1,4 +1,5 @@
 ﻿using StrategyPattern;
+using ObserverPattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,35 @@ namespace DesignPatterns
     class Program
     {
         static void Main(string[] args)
+        {
+
+            ObserverDesignPattern();
+
+            
+            StrategyDesignPattern();
+            
+            Console.WriteLine("Press any key to exit.....");
+            Console.ReadKey();
+        }
+
+        private static void ObserverDesignPattern()
+        {
+            Console.WriteLine("Observer Pattern Example:");
+            Console.WriteLine("-------------------------------------------------------------------");
+            var weatherStation = new WeatherStation();
+
+            var currentConditionsDisplay = new CurrentConditionsDisplay();
+            var staticsDisplay = new StaticsDisplay();
+
+            weatherStation.registerObserver(currentConditionsDisplay);
+            weatherStation.registerObserver(staticsDisplay);
+
+            weatherStation.setMeasurements(12, 23, 45);
+
+            Console.WriteLine("-------------------------------------------------------------------");
+        }
+
+        private static void StrategyDesignPattern()
         {
             var queen = new Queen();
             var king = new King();
@@ -48,8 +78,7 @@ namespace DesignPatterns
             troll.setWeapon(knife);
             troll.fight();
 
-            Console.WriteLine("Press any key to exit.....");
-            Console.ReadKey();
+            Console.WriteLine("-------------------------------------------------------------------");
         }
     }
 }
